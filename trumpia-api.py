@@ -27,10 +27,10 @@ def inbound():
 
 
 if __name__ == '__main__':
-    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    sock.bind(('localhost', 0))
-    port = sock.getsockname()[1]
-    port = os.environ.get("PORT") or 52183
+    # sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    # sock.bind(('localhost', 0))
+    # port = sock.getsockname()[1]
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', debug=True, port=port)
     # print(port)
     sock.close()
-    app.run(debug=True, port = port)
