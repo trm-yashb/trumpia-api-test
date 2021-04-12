@@ -1,1 +1,1 @@
-web: python trumpia-api.py
+web: gunicorn app:app
