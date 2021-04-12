@@ -25,8 +25,9 @@ def inbound():
             response = request.args.get('xml')
             root = ET.fromstring(response)
             for child in root:
-                print(str(child.tag) + ': ' + str(child.text))
-        return 'GET'
+                print(str(child.tag) + ': ' + str(child.text)
+        
+        return ''
 
 
 if __name__ == '__main__':
