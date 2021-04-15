@@ -1,19 +1,19 @@
 from flask import Flask, request
 import os
-from sys import stderr
 import xml.etree.ElementTree as ET
+import json
 # from flask_ngrok import run_with_ngrok
 
 app = Flask(__name__)
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
-    print('home', file=stderr)
+    print('home')
     return '200 ok'
 
 @app.route('/inbound/', methods=['GET', 'POST'])
 def inbound():
-    print('inbound', file=stderr)
+    print('inbound')
     if request.method == 'POST':
         return '200 ok'
 
@@ -29,6 +29,23 @@ def inbound():
                 temp.append((child.tag, child.text))
                 print(str(child.tag) + ': ' + str(child.text))
         return str(temp)
+
+@app.route('/push', methods=['GET', 'POST'])
+def push():
+    print('push')
+    if request.method == 'POST':
+        return '200 ok'
+
+    if request.method == 'GET':
+        print('push-GET')
+        res = []
+        for key, val in request.args.items():
+            res.append((key, val))
+
+        print(res)
+    
+    return str(res)
+
 
 
 if __name__ == '__main__':
